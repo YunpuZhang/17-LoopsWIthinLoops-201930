@@ -4,8 +4,8 @@ in the context of SEQUENCES OF SUB-SEQUENCES.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Yunpu Zhang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -104,6 +104,9 @@ def run_test_multiply_numbers():
 
 
 def multiply_numbers(sequence_of_lists):
+    for k in range(len(sequence_of_lists)):
+        for l in range(len(sequence_of_lists[k])):
+            sequence_of_lists[k][l] = sequence_of_lists[k][l] * (k + 1)
     """
     In the given sequence of lists,
       -- multiplies each element of the first list by 1,
@@ -118,7 +121,7 @@ def multiply_numbers(sequence_of_lists):
        [FYI: This 'can be multiplied ...' is an example of DUCK TYPING.]
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     #
@@ -153,10 +156,21 @@ def run_test_sum_numbers():
     answer = sum_numbers(([], [5], []))
     print('Expected and actual are:', expected, answer)
 
+    # Test 3:
+    expected = 0
+    answer = sum_numbers(([], [], []))
+    print('Expected and actual are:', expected, answer)
+
     # TO DO 3 (continued): Add your ADDITIONAL test(s) here:
 
 
 def sum_numbers(seq_seq):
+    total=0
+    for j in range(len(seq_seq)):
+        for k in range(len(seq_seq[j])):
+            total=total+ seq_seq[j][k]
+    return total
+
     """
     Returns the sum of the numbers in the given sequence
     of subsequences.  For example, if the given argument is:
@@ -167,7 +181,7 @@ def sum_numbers(seq_seq):
                     and each item in the subsequences is a number.
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
 
@@ -199,6 +213,9 @@ def run_test_print_characters():
 
 
 def print_characters(sequence_of_strings):
+    for j in range(len(sequence_of_strings)):
+        for k in range(len(sequence_of_strings[j])):
+            print(sequence_of_strings[j][k] )
     """
     Prints all the characters in the sequence of strings,
     but each character on ITS OWN LINE.  For example,
@@ -218,7 +235,7 @@ def print_characters(sequence_of_strings):
     Precondition:  the given argument is a sequence of strings.
     """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     # -------------------------------------------------------------------------
@@ -253,6 +270,11 @@ def run_test_print_characters_slanted():
 
 
 def print_characters_slanted(sequence_of_strings):
+    for j in range(len(sequence_of_strings)):
+        for k in range(len(sequence_of_strings[j])):
+            for l in range(k):
+                print(' ',end='')
+            print(sequence_of_strings[j][k] )
     """
     Same as the previous problem, but each string 'slants'.
     For example, if the given argument is ['hi', 'bye', 'a_tie!'],
@@ -271,7 +293,7 @@ def print_characters_slanted(sequence_of_strings):
     Precondition:  the given argument is a sequence of strings.
     """
     # -------------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # DONE: 6. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     #
