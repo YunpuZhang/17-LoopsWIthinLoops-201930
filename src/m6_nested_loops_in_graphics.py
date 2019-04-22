@@ -4,15 +4,15 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Yunpu Zhang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -56,6 +56,38 @@ def run_test_draw_L():
 
 
 def draw_L(window, circle, r, c):
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+    for i in range(r):  # Loop through the rows
+        for j in range(3):  # Loop through the columns
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color=circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (2 * radius)  # Move x to the right, for next circle
+
+        y = y + 2 * radius  # Move y down, for the next row of circles
+        x = original_x  # Reset x to the left-edge, for the next row
+
+
+    y1=y
+
+    for i in range(3):  # Loop through the rows
+        for j in range(c+3):  # Loop through the columns
+            new_circle = rg.Circle(rg.Point(x, y1), radius)
+            new_circle.fill_color=circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (2 * radius)  # Move x to the right, for next circle
+
+        y1 = y1 + 2 * radius  # Move y down, for the next row of circles
+        x = original_x  # Reset x to the left-edge, for the next row
     """
     See   L.pdf   in this project for pictures that may
     help you better understand the following specification:
@@ -81,7 +113,7 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # -------------------------------------------------------------------------
 
@@ -104,6 +136,30 @@ def run_test_draw_wall_on_right():
 
 
 def draw_wall_on_right(rectangle, n, window):
+    up_left=rectangle.get_upper_left_corner()
+    low_right=rectangle.get_lower_right_corner()
+    x1=up_left.x
+    y1=up_left.y
+    x2=low_right.x
+    y2=low_right.y
+    j=low_right.x-up_left.x
+    for k in range(n):
+        for l in range(k+1):
+            up_new=rg.Point(x1,y1)
+            low_new=rg.Point(x2,y2)
+            rect=rg.Rectangle(up_new,low_new)
+            rect.attach_to(window)
+            window.render(0.1)
+            x1=x1-j
+            x2=x2-j
+        x1=up_left.x
+        x2=low_right.x
+        y1=y1+(low_right.y-up_left.y)
+        y2=y2+(low_right.y-up_left.y)
+
+
+
+
     """
     See   Walls.pdf   in this project for pictures that may
     help you better understand the following specification:
